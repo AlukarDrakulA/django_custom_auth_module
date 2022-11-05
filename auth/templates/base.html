@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>User Auth</title>
+</head>
+<body class="container">
+<ul class="list-group">
+    <li class="list-group-item">
+      {% if user.is_authenticated %}
+      <a href="{% url 'home' %}">Home</a>
+      <a href="{% url 'home' %}">Articles</a>
+      <a href="{% url 'home' %}">Profile</a>
+      {% endif%}
+      <a href="/admin/">For Admin</a>
+    </li>
+    <li class="list-group-item">
+      {% if user.is_authenticated %}
+      Account: {{ user.username }}
+      {% if user.verify_status == True %}
+        <p>Verify</p>
+      {% else %}
+        <p>Need verify your account</p>
+      {% endif%}
+      <hr>
+      {% endif %}
+      {% if user.is_authenticated %}
+        <a class="btn btn-danger" href="{% url 'logout' %}">LOGOUT</a>
+      {% else %}
+        <a class="btn btn-success" href="{% url 'login' %}">LOGIN</a>
+        <a class="btn btn-primary" href="{% url 'register' %}">REGISTRATION</a>
+        <a class="btn btn-danger" href="{% url 'confirm_email' %}">CONFIRM YOUR EMAIL</a>
+      {% endif %}
+    </li>
+</ul>
+
+{% block content %}
+{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<br>
+<h1>Confirm Email Page</h1>
+<hr>
+
+    <div class="row">
+        <p>Проверьте почту и ведите код подтверждения для завершения регистрации: ...</p>
+    </div>
+
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit" class="btn btn-success" value="confirm">Confirm</button>
+    </form>
+
+{% endblock %}
